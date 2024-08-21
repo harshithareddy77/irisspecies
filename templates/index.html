@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flower Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f0f8ff; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden; 
+        }
+        form {
+            max-width: 300px;
+            background-color: #e6f7ff; 
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative; 
+            z-index: 10; 
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 15px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        /* Slowed down animation for falling images */
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        
+        /* Slower falling speed by increasing the animation duration */
+        .falling-image {
+            position: absolute;
+            top: -100px; 
+            width: 50px;
+            height: 50px;
+            animation: fall 10s linear infinite; /* Increased duration to 10 seconds */
+            opacity: 0;
+        }
+        
+        /* Randomize the starting position and delay of each falling image */
+        .falling-image:nth-child(1) { left: 5%; animation-delay: 0s; }
+        .falling-image:nth-child(2) { left: 15%; animation-delay: 1.5s; }
+        .falling-image:nth-child(3) { left: 25%; animation-delay: 3s; }
+        .falling-image:nth-child(4) { left: 35%; animation-delay: 2s; }
+        .falling-image:nth-child(5) { left: 45%; animation-delay: 0.5s; }
+        .falling-image:nth-child(6) { left: 55%; animation-delay: 2.5s; }
+        .falling-image:nth-child(7) { left: 65%; animation-delay: 1s; }
+        .falling-image:nth-child(8) { left: 75%; animation-delay: 3.5s; }
+        .falling-image:nth-child(9) { left: 85%; animation-delay: 2s; }
+        .falling-image:nth-child(10) { left: 95%; animation-delay: 1s; }
+    </style>
+</head>
+<body>
+    <!-- Falling images -->
+    <img src="{{ url_for('static', filename='icon') }}" alt="Flower" class="falling-image">
+    <img src="{{ url_for('static', filename='icon1') }}" alt="Flower" class="falling-image">
+    <img src="{{ url_for('static', filename='icon') }}" alt="Flower" class="falling-image">
+    <img src="{{ url_for('static', filename='icon1') }}" alt="Flower" class="falling-image">
+    <img src="{{ url_for('static', filename='icon') }}" alt="Flower" class="falling-image">
+    <img src="{{ url_for('static', filename='icon1') }}" alt="Flower" class="falling-image">
+    <img src="{{ url_for('static', filename='icon') }}" alt="Flower" class="falling-image">
+    <img src="{{ url_for('static', filename='icon1') }}" alt="Flower" class="falling-image">
+    <img src="{{ url_for('static', filename='icon') }}" alt="Flower" class="falling-image">
+    <img src="{{ url_for('static', filename='icon1') }}" alt="Flower" class="falling-image">
+
+    <h1>Iris Species Prediction</h1>
+    <form action="/predict" method="POST">
+        <label for="sepal_length">Sepal Length (in cm):</label>
+        <input type="text" id="sepal_length" name="sepal_length" required><br>
+        
+        <label for="sepal_width">Sepal Width (in cm):</label>
+        <input type="text" id="sepal_width" name="sepal_width" required><br>
+        
+        <label for="petal_length">Petal Length (in cm):</label>
+        <input type="text" id="petal_length" name="petal_length" required><br>
+        
+        <label for="petal_width">Petal Width (in cm):</label>
+        <input type="text" id="petal_width" name="petal_width" required><br>
+        
+        <input type="submit" value="Predict">
+    </form>
+</body>
+</html>
